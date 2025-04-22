@@ -9,8 +9,9 @@ const AudioContext = (
   window.msAudioContext
 );
 
+// && location.protocol.indexOf('http') !== -1
 const hasWebAudioAPI = {
-  data: !!AudioContext && location.protocol.indexOf('http') !== -1,
+  data: !!AudioContext,
 };
 
 
@@ -20,13 +21,14 @@ const music = {};
   if (!hasWebAudioAPI.data) {
     return;
   }
-  const url = './music.mp3';
+  const url = '/music.mp3'; // 改为绝对路径确保正确引用
   const context = new AudioContext();
   const req = new XMLHttpRequest();
   req.open('GET', url, true);
   req.responseType = 'arraybuffer';
 
   req.onload = () => {
+    console.log('音乐文件加载成功');
     context.decodeAudioData(req.response, (buf) => { // 将拿到的audio解码转为buffer
       const getSource = () => { // 创建source源。
         const source = context.createBufferSource();
@@ -83,6 +85,7 @@ const music = {};
       };
     },
     (error) => {
+      console.error('音乐文件解码失败:', error);
       if (window.console && window.console.error) {
         window.console.error(`音频: ${url} 读取错误`, error);
         hasWebAudioAPI.data = false;

@@ -146,7 +146,7 @@ export default class Keyboard extends React.Component {
           size="s2"
           top={0}
           left={106}
-          label={`${i18n.sound[lan]}(S)`}
+          label={`${i18n.sound[lan]}(O)`}
           active={keyboard.get('music')}
           ref={(c) => { this.dom_s = c; }}
         />

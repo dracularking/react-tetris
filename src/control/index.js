@@ -2,14 +2,14 @@ import store from '../store';
 import todo from './todo';
 
 const keyboard = {
-  37: 'left',
-  38: 'rotate',
-  39: 'right',
-  40: 'down',
-  32: 'space',
-  83: 's',
-  82: 'r',
-  80: 'p',
+  65: 'left',    // A
+  87: 'rotate',  // W
+  68: 'right',   // D
+  83: 'down',    // S
+  32: 'space',   // Space
+  79: 's',       // O triggers original S function (music toggle)
+  82: 'r',       // R
+  80: 'p',       // P
 };
 
 let keydownActive;
@@ -41,4 +41,3 @@ const keyUp = (e) => {
 
 document.addEventListener('keydown', keyDown, true);
 document.addEventListener('keyup', keyUp, true);
-
